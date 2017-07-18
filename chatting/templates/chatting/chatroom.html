@@ -1,5 +1,3 @@
-{% load staticfiles %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,25 +6,24 @@
 	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<link rel="stylesheet" href="{% static 'chatroom.css' %}">
+<link rel="stylesheet" href="chatroom.css">
 
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js" />
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+<script>
+	$(function(){
 
-</head>
-<body>
-	<div class="container">
-		<div class="col-md-3">
-			<ul class="user-list">
-				<li>chris</li>
-			</ul>
-		</div>
-		<div class="col-md-1"><div class="line"></div></div>
-		<script>
-		$(function(){
-			setupUI();
+		var username = getUrlParam("username");
+
+		function getUrlParam(name) {
+		 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		 	var r = window.location.search.substr(1).match(reg); //匹配目标参数
+		 	if (r != null) return unescape(r[2]); return null; //返回参数值
+		}
+
+		setupUI();
 
 			function setupUI() {
 				$(".line").height($(window).height() - 40);
@@ -35,17 +32,82 @@
 					"max-height": $(window).height() - 180
 				});
 			}
-			$(window).resize(function() {
-				setupUI();
-			});
+
+		$(window).resize(function() {
+			setupUI();
 		});
-		</script>
+
+		var ws;
+		function setupSocket() {
+			ws = new WebSocket('ws://' + window.location.host + '/chatting/' + username);
+
+			ws.onopen = function() {
+
+			}
+
+			ws.onmessage = function(event) {
+				var message = event.data;
+				var obj = eval('(' + message + ')');
+				switch(obj["type"]){
+					case 'CHAT':
+						if(obj["sender"] == username) {
+							$(".chat-thread").append('<li class="self"><div class="inner">' + obj["content"] + '</div></li>');
+						}
+						else {
+							$(".chat-thread").append('<li class="else"><div class="username">' + obj["sender"] + '</div><div class="inner">' + obj["content"] + '</div></li>');
+						}
+						break;
+					case 'LOCK':
+						lock();
+						break;
+					case 'RESTORE':
+						restore();
+						break;
+				}
+			}
+		}
+		function lock() {
+			$(".ban[order='1']").fadeIn('slow', function() {
+				$(".ban[order='2']").animate({"left": "0"}, 'slow');
+			});
+		}
+		function restore() {
+			$(".ban[order='2']").animate({"left": "-100%"}, 'slow', function(){
+				$(".ban[order='1']").fadeOut('slow');
+			});
+		}
+
+		$.get("http://" + {% auth_url %} + "/{% apihostname %}/" + username + "/getPCUrl", function(data, textStatus, xhr) {
+			window.open(data);
+		});
+
+
+	});
+</script>
+
+</head>
+<body>
+
+		<OBJECT data='window_open.html' type='text/x-scriptlet' style='display:none;' width='1' height='1' id='newwindoc' VIEWASTEXT></OBJECT>
+	<div class="container">
+		<div class="col-md-3">
+			<ul class="user-list">
+				<li>AAA</li>
+				<li>BBB</li>
+			</ul>
+		</div>
+		<div class="col-md-1"><div class="line"></div></div>
 		<div class="col-md-8">
 			<ul class="chat-thread">
-				<li class="self"><div class="inner">Hello, world!</div></li>
 			</ul>
 			<div class="msginput"><textarea class="form-control msginput" rows="3"></textarea></div>
-			
+
+		</div>
+	</div>
+	<div class="ban" order="1"></div>
+	<div class="ban" order="2">
+		<div>
+			<div>用户已离开<br><span style="font-size: 30px;">持绑定设备靠近计算机，即可解除页面锁定。</span></div>
 		</div>
 	</div>
 </body>
