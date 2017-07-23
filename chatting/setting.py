@@ -15,11 +15,12 @@ RESTORE_MESSAGE = "RESTORE"
 LOCK_MESSAGE = "LOCK"
 
 
-# iKey = "pKhdMgCQOO2mrKPomCRs"
+
 iKey = "pKhdMgCQOO2mrKPomCRs"
-# sKey = "mBMayeaovwGVwuXFUmExdtUy8bABVbsWViS61zON"
+# iKey = "E9Ps9wZin6lzeWWvO9J5"
 sKey = "mBMayeaovwGVwuXFUmExdtUy8bABVbsWViS61zON"
-# api_host = "api-DHA4ufjn"
+# sKey = "AbABWzYLyvCcKBJkPaErY8GjoujersxtdLyxTefx"
 api_host = "api-DHA4ufjn"
+# api_host = "api-ZsD1gvI5"
 
 random = "mBMayeaovwGVwuXFUmExdtUy8bABVbsWViS61zON"

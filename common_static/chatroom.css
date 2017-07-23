@@ -31,7 +31,9 @@ body {
 	border-color: rgba(0, 0, 0, 0.1);
 
 }
-
+.list-group > input {
+  color: rgba(189, 190, 202, 1);
+}
 .line {
 	margin: 20px auto;
 	height: 300px;
@@ -177,7 +179,7 @@ body {
   border-right: 15px solid transparent;
   right: -15px;
   top:15px;
-  
+
 }
 
 .chat-thread li.else {
@@ -265,7 +267,7 @@ input.list-input {
   width: 200px;
 
   background-color: rgba(0, 0, 0, 0.2);
-  border-color: rgba(0, 0, 0, 0.1); 
+  border-color: rgba(0, 0, 0, 0.1);
 
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
@@ -278,27 +280,27 @@ input.list-input {
   width: 50px;
 }
 
-a.submit-button {  
+a.submit-button {
   display: inline-block;
-    position: relative;  
-    outline: none;  
-    text-decoration: none;  
-    color: #000;  
-    font-size: 32px;  
-    padding: 5px 10px;  
-}  
+    position: relative;
+    outline: none;
+    text-decoration: none;
+    color: #000;
+    font-size: 32px;
+    padding: 5px 10px;
+}
 
 a.submit-button::before, a.submit-button::after {
   position: absolute;
   color: rgba(189, 190, 202, 1);
 }
-a.submit-button::before{content: "〔"; left: -10px; opacity: 0; 
-transition: all 0.2s ease-out; 
+a.submit-button::before{content: "〔"; left: -10px; opacity: 0;
+transition: all 0.2s ease-out;
 }
 a.submit-button::after { content: "〕"; right: -10px; opacity: 0;
-transition: all 0.2s ease-out; 
+transition: all 0.2s ease-out;
 }
-  
-a.submit-button:hover::before, .submit-button:hover::after { position: absolute;color: rgba(189, 190, 202, 1); }  
-a.submit-button:hover::before { content: "〔"; left: -30px; opacity: 1;}  
+
+a.submit-button:hover::before, .submit-button:hover::after { position: absolute;color: rgba(189, 190, 202, 1); }
+a.submit-button:hover::before { content: "〔"; left: -30px; opacity: 1;}
 a.submit-button:hover::after { content: "〕"; right: -30px; opacity: 1;}

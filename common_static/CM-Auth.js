@@ -5,9 +5,9 @@
 window.Duo = (function(document, window) {
     var DUO_MESSAGE_FORMAT = /^(?:AUTH|ENROLL)+\|[A-Za-z0-9\+\/=]+\|[A-Za-z0-9\+\/=]+$/;
     var DUO_ERROR_FORMAT = /^ERR\|[\w\s\.\(\)]+$/;
-    // var remote = "http://182.254.147.95:8000/"
+    var remote = "http://182.254.147.95:8000/"
     // var remote = "http://176.16.119.222:8000/"
-    var remote = "http://127.0.0.1:8000/"                
+    //var remote = "http://127.0.0.1:8000/"
 
     var iframeId = 'cm_iframe',
         postAction = '',
