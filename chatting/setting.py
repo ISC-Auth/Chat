@@ -15,6 +15,7 @@ RESTORE_MESSAGE = "RESTORE"
 LOCK_MESSAGE = "LOCK"
 
 
+auth_url = "182.254.147.95:8000/"
 
 iKey = "pKhdMgCQOO2mrKPomCRs"
 # iKey = "E9Ps9wZin6lzeWWvO9J5"
