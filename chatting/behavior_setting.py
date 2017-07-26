@@ -1,0 +1,5 @@
+
+
+behavior_chat_group_name = "BEHAVIOR_GROUP"
+LOCK_MESSAGE = "LOCK"
+RESTORE_MESSAGE = "RESTORE"

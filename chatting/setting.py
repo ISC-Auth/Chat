@@ -7,7 +7,7 @@ user_profiles = {
     'lcs' : '123',
 }
 
-top_group_name = 'isc'
+chat_top_group_name = 'isc'
 
 #type定义
 CHAT_MESSAGE = "CHAT"
@@ -17,11 +17,11 @@ LOCK_MESSAGE = "LOCK"
 
 auth_url = "182.254.147.95:8000/"
 
-iKey = "pKhdMgCQOO2mrKPomCRs"
-# iKey = "E9Ps9wZin6lzeWWvO9J5"
-sKey = "mBMayeaovwGVwuXFUmExdtUy8bABVbsWViS61zON"
-# sKey = "AbABWzYLyvCcKBJkPaErY8GjoujersxtdLyxTefx"
-api_host = "api-DHA4ufjn"
-# api_host = "api-ZsD1gvI5"
+# iKey = "pKhdMgCQOO2mrKPomCRs"
+iKey = "ougfY2pX7s9n9Deehvji"
+# sKey = "mBMayeaovwGVwuXFUmExdtUy8bABVbsWViS61zON"
+sKey = "BBaA5KzZKG1T89oaW263XvfuhrKWEr4H394Gvxit"
+# api_host = "api-DHA4ufjn"
+api_host = "api-RDXfaHNt"
 
 random = "mBMayeaovwGVwuXFUmExdtUy8bABVbsWViS61zON"

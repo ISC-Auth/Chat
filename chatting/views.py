@@ -3,9 +3,8 @@ from django.http import HttpResponse
 from .setting import user_profiles,LOCK_MESSAGE,RESTORE_MESSAGE
 from channels import Group
 import json
-from chatting.auth_sdk import *
 from .setting import sKey,iKey,api_host,random,auth_url
-# from chatting.auth_sdk import *
+from chatting.auth_sdk import *
 
 
 def login_page(request):
@@ -21,16 +20,24 @@ def do_login(request):
         return render(request,'chatting/failed.html')
     else:
         request.method = 'GET'
-        # return render(request,"chatting/chatroom.html")
-        return cm_auth(request,user)
+        context = {
+                'auth_url': auth_url,
+                'host': api_host,
+                'username':user
+            }
+    # return render(request,"chatting/chatroom.html",context)
+    return cm_auth(request,user)
 
 
 def lock(request,user_name):
+    print(user_name)
+    print('in lock')
     Group(user_name).send({
         "text":json.dumps({
             "type":LOCK_MESSAGE
         })
     })
+    return HttpResponse('Lock')
 
 def restore(request,user_name):
     Group(user_name).send({
@@ -38,6 +45,7 @@ def restore(request,user_name):
             "type":RESTORE_MESSAGE
         })
     })
+    return HttpResponse('Restore')
 
 
 
@@ -63,13 +71,8 @@ def cm_auth(request,user_name):
         else:
             context = {
                 'auth_url': auth_url,
-                'host': api_host
+                'host': api_host,
+                'username':user_name
+
             }
             return render(request,"chatting/chatroom.html",context)
-
-def test(request,user_name):
-    context = {
-        'auth_url': auth_url,
-        'host':api_host
-    }
-    return render(request,"chatting/chatroom.html",context)
